@@ -1,0 +1,96 @@
+.lib {
+	min-height: 100dvh;
+	height: 100dvh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	padding: 1rem;
+}
+
+.content {
+	height: 80%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.lib-header {
+	height: 200px;
+	font-size: 3rem;
+	margin-top: 4rem;
+	font-family: roboto;
+	text-shadow: 3px 3px 5px #000;
+	font-weight: 250;
+	color: #fff;
+	letter-spacing: 0.3rem;
+	position: relative;
+	z-index: 5;
+}
+
+.category-item {
+	width: 100%;
+	padding-block: 1rem;
+	text-transform: capitalize;
+	font-family: montserrat;
+	font-size: 1.2rem;
+	transition: 0.3s;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	column-gap: 2rem;
+	padding-inline: 2rem;
+	color: #fff;
+	z-index: 23;
+}
+
+.category-item:hover {
+	background: chocolate;
+	color: #fff;
+	letter-spacing: 5px;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+
+a {
+	color: #000;
+	text-decoration: none;
+	font-family: montserrat;
+	font-size: 1.2rem;
+	text-transform: capitalize;
+}
+
+.category-item .icon {
+	transition: 0.3s;
+}
+
+.icon .fa {
+	color: #fff;
+	font-size: 1.5rem;
+}
+
+.category-item:hover .icon {
+	color: rgb(14, 235, 11);
+}
+
+@media (max-width: 500px) {
+	.lib-header {
+		font-size: 2.5rem;
+		height: 100px;
+	}
+
+	.content {
+		min-height: 500px;
+	}
+
+	.lib {
+		padding-top: 3rem;
+		min-height: 790px;
+	}
+
+	.category-item {
+		font-size: 1.4rem;
+	}
+}

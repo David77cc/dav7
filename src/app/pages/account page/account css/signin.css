@@ -1,0 +1,10 @@
+@media (max-width: 420px) {
+	.form-cont {
+		height: 800px;
+	}
+}
+
+input {
+	text-indent: 3px;
+	font-family: san-serif;
+}

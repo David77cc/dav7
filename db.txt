@@ -1,0 +1,209 @@
+
+C:\Users\gt>psql -U postgres
+Password for user postgres:
+psql (17.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# -d fest
+postgres-# -d
+postgres-# fest
+postgres-# cls
+postgres-# q
+postgres-# quite
+postgres-# quite
+postgres-# quit
+Use \q to quit.
+postgres-# \l
+                                                                     List of databases
+   Name    |  Owner   | Encoding | Locale Provider |           Collate           |            Ctype            | Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+-----------------------------+-----------------------------+--------+-----------+-----------------------
+ fest      | postgres | UTF8     | libc            | English_United Kingdom.1252 | English_United Kingdom.1252 |        |           |
+ postgres  | postgres | UTF8     | libc            | English_United Kingdom.1252 | English_United Kingdom.1252 |        |           |
+ template0 | postgres | UTF8     | libc            | English_United Kingdom.1252 | English_United Kingdom.1252 |        |           | =c/postgres          +
+           |          |          |                 |                             |                             |        |           | postgres=CTc/postgres
+ template1 | postgres | UTF8     | libc            | English_United Kingdom.1252 | English_United Kingdom.1252 |        |           | =c/postgres          +
+           |          |          |                 |                             |                             |        |           | postgres=CTc/postgres
+(4 rows)
+
+
+postgres-# c fest
+postgres-# \c fest
+You are now connected to database "fest" as user "postgres".
+fest-# \dt
+               List of relations
+ Schema |        Name        | Type  |  Owner
+--------+--------------------+-------+----------
+ public | User               | table | postgres
+ public | _prisma_migrations | table | postgres
+(2 rows)
+
+
+fest-# \d _prisma_migrations
+                        Table "public._prisma_migrations"
+       Column        |           Type           | Collation | Nullable | Default
+---------------------+--------------------------+-----------+----------+---------
+ id                  | character varying(36)    |           | not null |
+ checksum            | character varying(64)    |           | not null |
+ finished_at         | timestamp with time zone |           |          |
+ migration_name      | character varying(255)   |           | not null |
+ logs                | text                     |           |          |
+ rolled_back_at      | timestamp with time zone |           |          |
+ started_at          | timestamp with time zone |           | not null | now()
+ applied_steps_count | integer                  |           | not null | 0
+Indexes:
+    "_prisma_migrations_pkey" PRIMARY KEY, btree (id)
+
+
+fest-# \d User
+Did not find any relation named "User".
+fest-# \d "User"
+                                          Table "public.User"
+  Column   |              Type              | Collation | Nullable |              Default
+-----------+--------------------------------+-----------+----------+------------------------------------
+ id        | integer                        |           | not null | nextval('"User_id_seq"'::regclass)
+ name      | text                           |           | not null |
+ email     | text                           |           | not null |
+ password  | text                           |           | not null |
+ createdat | timestamp(3) without time zone |           | not null | CURRENT_TIMESTAMP
+Indexes:
+    "User_pkey" PRIMARY KEY, btree (id)
+    "User_email_key" UNIQUE, btree (email)
+
+
+fest-# select * from "User"
+fest-# ;
+ERROR:  syntax error at or near "-"
+LINE 1: -d fest
+        ^
+fest=# select * from "User";
+ id |       name        |         email         |                           password                           |        createdat
+----+-------------------+-----------------------+--------------------------------------------------------------+-------------------------
+  1 | Paulo Dybala      | dybala649@gmail.com   | $2a$10$4trAeqCfeO1Zrditcri39ehmZda7le6oK58j4BjqZxOZ9otCogFuC | 2024-12-12 21:22:24.354
+  2 | Bob Zilla         | zilla@gmail.com       | $2a$10$k8bF4bfoaKZc3mq8dpQdI.cc.GtQXJ8mGu/OPYa9Na6EaN7g0nTjy | 2024-12-13 23:25:55.283
+  3 | Caesar Philip     | philip@gmail.com      | $2a$10$vdiEK0t4O3nh5uu6ROMV7OlNxQ8.1Kqua/OUPv2GNvguiaalEkWcy | 2024-12-14 00:01:52.452
+  4 | Ofili Joshua      | joshua239@gmail.com   | $2a$10$btTQLvSGR08FMkbDsUzdd.cmuJAgFoo5RnREKkwJl3nlnV4a8mj7. | 2024-12-14 15:04:01.861
+  5 | Joshua Zirkzee    | zirkzeejosh@gmail.com | $2a$10$/OP22imkbPf5D.4tiqmOOeRW6uKae6hKIx1yotdJ.1MO7ucmKqu66 | 2024-12-14 15:24:34.809
+  6 | Bruno Fernandes   | Fernandes@gmail.com   | $2a$10$Os0gAAtxVOA3MfKDcLlLjOYagE.sntcR3MX9shycpteCw5l2/A0dC | 2024-12-14 15:28:37.803
+  7 | Emi Buendia       | buendia@gmail.com     | $2a$10$Z0zfnwNbLVPUR4hQRShKSebjXPAVs1D38KeHKte4Ik/T04jj..qAm | 2024-12-14 15:34:23.768
+  8 | Kyle Walker       | kyle@gmail.com        | $2a$10$Q3nLv3m77EMWMFdJo/vM4uhsLXv6zbDKICWDIKNLbSyxvH5tZQ.22 | 2024-12-15 17:13:52.586
+  9 | Daniel Sizu       | Fernades@gmail.com    | $2a$10$JZjngGPvURmLQjsWL7QyieKEW2lCMAT8piOJLdrABolHfBeMwR1t6 | 2024-12-15 21:24:32.044
+ 10 | Ruben Dias        | ruben@gmail.com       | $2a$10$Ji5oJUtSlRBlCi9AWxe5ue79yRHTukuqUGkFn8KxPLqIQcUf5Qosi | 2024-12-17 02:19:09.026
+ 11 | Amad Diallo       | diallo@gmail.com      | $2a$10$4rakZz.36wY5AEwcH3aeyOBnNJjM9cqIEBH3VzhbdZobSBv9JTCzu | 2024-12-17 02:23:35.282
+ 12 | Briham diaz       | diaz@gmail.com        | $2a$10$7dIwdUdgBTOILLQKwVNVsutfzsXhCO1uE3rbzZWtlgQ/oDQsnLpzW | 2024-12-17 02:53:39.484
+ 13 | Long Staff        | long@gmail.com        | $2a$10$rWYeT3qvrx3i2v.WKEhOlefFyHB0gm2w0jHtZTkToBwgjM5BAqpf2 | 2024-12-17 11:07:41.357
+ 14 | George Washington | washington@gmail.com  | $2a$10$7O7SCntHebF8.KTuDGk2c.6FNckB48NU5obXq73Z/EqU6.81u0Wde | 2024-12-19 09:49:57.021
+(14 rows)
+
+creating function and a trigger : 
+
+C:\Users\gt>psql -U postgres -d fest
+Password for user postgres:
+psql (17.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+fest=# \c fest
+You are now connected to database "fest" as user "postgres".
+fest=# CREATE TABLE posts (
+fest(# id SERIAL PRIMARY KEY,
+fest(# title VARCHAR(255) NOT NULL,
+fest(# content TEXT NOT NULL,
+fest(# image_url VARCHAR(255),
+fest(# author VARCHAR(255) NOT NULL,
+fest(# created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+fest(# updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+fest(# );
+CREATE TABLE
+fest=# \D TABLE
+invalid command \D
+Try \? for help.
+fest=# \d table
+Did not find any relation named "table".
+fest=# \d
+                 List of relations
+ Schema |        Name        |   Type   |  Owner
+--------+--------------------+----------+----------
+ public | User               | table    | postgres
+ public | User_id_seq        | sequence | postgres
+ public | _prisma_migrations | table    | postgres
+ public | posts              | table    | postgres
+ public | posts_id_seq       | sequence | postgres
+(5 rows)
+
+
+fest=# \c posts
+connection to server at "localhost" (::1), port 5432 failed: FATAL:  database "posts" does not exist
+Previous connection kept
+fest=# \dt
+               List of relations
+ Schema |        Name        | Type  |  Owner
+--------+--------------------+-------+----------
+ public | User               | table | postgres
+ public | _prisma_migrations | table | postgres
+ public | posts              | table | postgres
+(3 rows)
+
+
+fest=# \d
+                 List of relations
+ Schema |        Name        |   Type   |  Owner
+--------+--------------------+----------+----------
+ public | User               | table    | postgres
+ public | User_id_seq        | sequence | postgres
+ public | _prisma_migrations | table    | postgres
+ public | posts              | table    | postgres
+ public | posts_id_seq       | sequence | postgres
+(5 rows)
+
+
+fest=# \dt
+               List of relations
+ Schema |        Name        | Type  |  Owner
+--------+--------------------+-------+----------
+ public | User               | table | postgres
+ public | _prisma_migrations | table | postgres
+ public | posts              | table | postgres
+(3 rows)
+
+
+fest=# \d posts
+                                        Table "public.posts"
+   Column   |            Type             | Collation | Nullable |              Default           
+------------+-----------------------------+-----------+----------+-----------------------------------
+ id         | integer                     |           | not null | nextval('posts_id_seq'::regclass)
+ title      | character varying(255)      |           | not null |
+ content    | text                        |           | not null |
+ image_url  | character varying(255)      |           |          |
+ author     | character varying(255)      |           | not null |
+ created_at | timestamp without time zone |           | not null | CURRENT_TIMESTAMP
+ updated_at | timestamp without time zone |           |          | CURRENT_TIMESTAMP
+Indexes:
+    "posts_pkey" PRIMARY KEY, btree (id)
+
+
+fest=# select * from posts;
+ id | title | content | image_url | author | created_at | updated_at
+----+-------+---------+-----------+--------+------------+------------
+(0 rows)
+
+
+fest=# CREATE OR REPLACE FUNCTION update_updated_at_column()
+fest-# RETURNS TRIGGER AS $$
+fest$# BEGIN
+fest$#  NEW.updated_at = CURRENT_TIMESTAMP;
+fest$#  RETURN NEW;
+fest$# END;
+fest$# $$ LANGUAGE plpgsql;
+CREATE FUNCTION
+fest=# CREATE TRIGGER set_updated_at
+fest-# BEFORE UPDATE ON posts
+fest-# FOR EACH ROW
+fest-# EXECUTE FUNCTION update_updated_at_column();
+CREATE TRIGGER
+fest=#
+

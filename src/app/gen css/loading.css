@@ -1,0 +1,46 @@
+.overlay-home {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 99;
+}
+.circle {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	background-color: #3498db;
+	animation: scale 1.2s infinite ease-in-out;
+}
+
+.circle:nth-child(1) {
+	animation-delay: 0s;
+}
+.circle:nth-child(2) {
+	animation-delay: 0.2s;
+}
+.circle:nth-child(3) {
+	animation-delay: 0.4s;
+}
+
+.loading-cont {
+	height: 100dvh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@keyframes scale {
+	0%,
+	100% {
+		opacity: 0.5;
+		transform: scale(0.5);
+	}
+	50% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}

@@ -1,0 +1,31 @@
+Roadmap to Master Data Structures
+Foundations: Big-O Notation
+
+Learn how to measure time and space complexity.
+Understand the trade-offs between different data structures.
+Basic Data Structures
+
+Arrays and Strings: Sequential data handling.
+Linked Lists: Dynamic memory usage.
+Stacks and Queues: LIFO and FIFO principles.
+Advanced Data Structures
+
+Hash Tables/Hash Maps: Fast lookups and retrievals.
+Trees: Binary trees, binary search trees, AVL, heaps.
+Graphs: Representation (adjacency list/matrix) and traversal (DFS, BFS).
+Sorting and Searching Algorithms
+
+Bubble, Merge, Quick sort.
+Binary search and variations.
+Specialized Data Structures
+
+Tries: Efficient prefix-based searches.
+Segment Trees: Range queries.
+Disjoint Sets (Union-Find): For graph algorithms.
+Applications
+
+Learn practical uses of data structures in solving problems.
+Dive into LeetCode, HackerRank, or Codeforces for hands-on practice.
+Combine with Algorithms
+
+Learn common algorithms (Dynamic Programming, Greedy, Divide & Conquer) and pair them with suitable data structures.

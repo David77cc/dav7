@@ -1,0 +1,136 @@
+
+C:\Users\gt>psql -U postgres -d nxpdb
+Password for user postgres:
+psql (17.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+nxpdb=# drop table if exists "User";
+DROP TABLE
+nxpdb=# \d
+               List of relations
+ Schema |        Name        | Type  |  Owner
+--------+--------------------+-------+----------
+ public | _prisma_migrations | table | postgres
+(1 row)
+
+
+nxpdb=# drop database if exists "nxpdb";
+ERROR:  cannot drop the currently open database
+nxpdb=# \q
+
+C:\Users\gt>psql -U postgres -d postgres
+Password for user postgres:
+psql (17.2)
+WARNING: Console code page (850) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# drop database if exists "nxpdb";
+DROP DATABASE
+postgres=# \d
+Did not find any relations.
+postgres=# create database "fest";
+CREATE DATABASE
+postgres=# create table "User" (
+postgres(# id serial primary key,
+postgres(# name varchar(255),
+postgres(# email varchar(255),
+postgres(# createdAt timestamp,
+postgres(# sex char(4)
+postgres(# );
+CREATE TABLE
+postgres=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner
+--------+-------------+----------+----------
+ public | User        | table    | postgres
+ public | User_id_seq | sequence | postgres
+(2 rows)
+
+
+postgres=# \d "User"
+                                         Table "public.User"
+  Column   |            Type             | Collation | Nullable |              Default 
+-----------+-----------------------------+-----------+----------+------------------------------------
+ id        | integer                     |           | not null | nextval('"User_id_seq"'::regclass)
+ name      | character varying(255)      |           |          |
+ email     | character varying(255)      |           |          |
+ createdat | timestamp without time zone |           |          |
+ sex       | character(4)                |           |          |
+Indexes:
+    "User_pkey" PRIMARY KEY, btree (id)
+
+
+postgres=# alter table "User"
+postgres-# add constraint sex_check check (sex in ('M', 'F', 'PNTS'));
+ALTER TABLE
+postgres=# alter table "User"
+postgres-# add constraint unique_email unique (email);
+ALTER TABLE
+postgres=# alter table "User" alter column "name" set not null;
+ALTER TABLE
+postgres=# alter table "User" alter column "email" set not null;
+ALTER TABLE
+postgres=# alter table "User" alter column "createdAt" set not null;
+ERROR:  column "createdAt" of relation "User" does not exist
+postgres=# alter table "User" alter column "createdat" set not null;
+ALTER TABLE
+postgres=# alter table "user" alter column "sex" set not null;
+ERROR:  relation "user" does not exist
+postgres=# alter table "User" alter column "sex" set not null;
+ALTER TABLE
+postgres=# \d
+             List of relations
+ Schema |    Name     |   Type   |  Owner
+--------+-------------+----------+----------
+ public | User        | table    | postgres
+ public | User_id_seq | sequence | postgres
+(2 rows)
+
+
+postgres=# \d "User"
+                                         Table "public.User"
+  Column   |            Type             | Collation | Nullable |              Default 
+-----------+-----------------------------+-----------+----------+------------------------------------
+ id        | integer                     |           | not null | nextval('"User_id_seq"'::regclass)
+ name      | character varying(255)      |           | not null |
+ email     | character varying(255)      |           | not null |
+ createdat | timestamp without time zone |           | not null |
+ sex       | character(4)                |           | not null |
+Indexes:
+    "User_pkey" PRIMARY KEY, btree (id)
+    "unique_email" UNIQUE CONSTRAINT, btree (email)
+Check constraints:
+    "sex_check" CHECK (sex = ANY (ARRAY['M'::bpchar, 'F'::bpchar, 'PNTS'::bpchar]))
+
+
+postgres=# \d "User"
+                                         Table "public.User"
+  Column   |            Type             | Collation | Nullable |              Default 
+-----------+-----------------------------+-----------+----------+------------------------------------
+ id        | integer                     |           | not null | nextval('"User_id_seq"'::regclass)
+ name      | character varying(255)      |           | not null |
+ email     | character varying(255)      |           | not null |
+ createdat | timestamp without time zone |           | not null |
+ sex       | character(4)                |           | not null |
+Indexes:
+    "User_pkey" PRIMARY KEY, btree (id)
+    "unique_email" UNIQUE CONSTRAINT, btree (email)
+Check constraints:
+    "sex_check" CHECK (sex = ANY (ARRAY['M'::bpchar, 'F'::bpchar, 'PNTS'::bpchar]))
+
+
+postgres=# alter table "User" column createdat set default now();
+ERROR:  syntax error at or near "column"
+LINE 1: alter table "User" column createdat set default now();
+                           ^
+postgres=# alter table "User" column createdat set default now();
+ERROR:  syntax error at or near "column"
+LINE 1: alter table "User" column createdat set default now();
+                           ^
+postgres=# alter table "User" alter column createdat set default now();
+ALTER TABLE
